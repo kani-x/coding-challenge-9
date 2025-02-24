@@ -68,3 +68,22 @@ company.listEmployees();
 // Expected output:
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
+
+// Task 4 - Implemented Payroll System
+class PayrollCompany extends Company {
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, emp) => {
+            if (emp instanceof Manager) {
+                return total + emp.calculateAnnualSalary() + emp.calculateBonus();
+            }
+            return total + emp.calculateAnnualSalary();
+        }, 0);
+    }
+}
+
+// Test Case for Task 4
+const payrollCompany = new PayrollCompany("TechCorp");
+payrollCompany.addEmployee(emp1);
+payrollCompany.addEmployee(mgr1);
+console.log(payrollCompany.calculateTotalPayroll()); 
+// Expected output: 165600
